@@ -2,6 +2,12 @@ package br.com.demo;
 
 public class IPKV extends TemplateDeImpostoCondicional {
 
+    public IPKV() {}
+
+    public IPKV(Imposto outroImposto) {
+        super(outroImposto);
+    }
+
     @Override
     public boolean deveUsarTaxacaoMaxima(Orcamento orcamento) {
         return orcamento.getValor() > 500;

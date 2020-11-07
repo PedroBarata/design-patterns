@@ -2,6 +2,13 @@ package br.com.demo;
 
 public class IPVV extends TemplateDeImpostoCondicional {
 
+    public IPVV() {
+    }
+
+    public IPVV(Imposto outroImposto) {
+        super(outroImposto);
+    }
+
     public boolean possuiAlgumItemAcimaDe100Reais(Orcamento orcamento) {
         return orcamento.getItens().stream().anyMatch(item -> item.getValor() > 100);
     }

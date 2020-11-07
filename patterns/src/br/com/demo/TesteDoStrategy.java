@@ -7,14 +7,13 @@ public class TesteDoStrategy {
      * usando a calculadora de impostos
      */
     public static void main(String[] args) {
-        ICMS icms = new ICMS();
-        ISS iss = new ISS();
+        ICMS icmsComIssComIPKV = new ICMS(new ISS(new IPKV(new IPVV())));
+
         Orcamento orcamento = new Orcamento(500.0);
 
         CalculadorDeImposto calculador = new CalculadorDeImposto();
 
-        calculador.calcula(orcamento, icms);
-        calculador.calcula(orcamento, iss);
+        calculador.calcula(orcamento, icmsComIssComIPKV);
 
     }
 }
