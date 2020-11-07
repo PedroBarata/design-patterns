@@ -7,13 +7,13 @@ public class TesteDoChainOfResponsibility {
      * usando a calculadora de impostos
      */
     public static void main(String[] args) {
-        DescontoAcimaDeQuinhentosReais d1 = new DescontoAcimaDeQuinhentosReais();
-        DescontoComMaisDeCincoItens d2 = new DescontoComMaisDeCincoItens();
-        SemDesconto semDesconto = new SemDesconto();
-        Orcamento orcamento = new Orcamento(600.0);
+        DescontoComMaisDeCincoItens d3 = new DescontoComMaisDeCincoItens();
+        DescontoDeVendaCasada d2 = new DescontoDeVendaCasada(d3);
+        DescontoAcimaDeQuinhentosReais d1 = new DescontoAcimaDeQuinhentosReais(d2);
 
-        d1.setProximo(d2);
-        d2.setProximo(semDesconto);
+        Orcamento orcamento = new Orcamento(500.0);
+        orcamento.addItem("LAPIS", 250.0);
+        orcamento.addItem("CANETA", 250.0);
 
         CalculadorDeDesconto calculadorDeDesconto = new CalculadorDeDesconto();
         double desconto = calculadorDeDesconto.calcula(orcamento, d1);

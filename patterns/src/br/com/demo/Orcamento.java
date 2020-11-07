@@ -22,8 +22,15 @@ public class Orcamento {
         return Collections.unmodifiableList(this.itens);
     }
 
-    public void addItem(Item item) {
-        this.itens.add(item);
+    public void addItem(String nome, double valor) {
+        this.itens.add(new Item(nome, valor));
+    }
+
+    public boolean contemItemDeNome(String nomeDoItem) {
+        for (Item item : itens) {
+            if (item.getNome().equals(nomeDoItem)) return true;
+        }
+        return false;
     }
 
 }
