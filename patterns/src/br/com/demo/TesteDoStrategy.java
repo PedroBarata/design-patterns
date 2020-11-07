@@ -1,7 +1,11 @@
 package br.com.demo;
 
-public class Main {
+public class TesteDoStrategy {
 
+    /**
+     * Exemplo de utilização do padrão Strategy,
+     * usando a calculadora de impostos
+     */
     public static void main(String[] args) {
         ICMS icms = new ICMS();
         ISS iss = new ISS();
