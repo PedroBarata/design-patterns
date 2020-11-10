@@ -12,14 +12,16 @@ public class NotaFiscal {
     private Calendar dataDaEmissao;
     private String observacoes;
     private List<ItemDaNota> notaList;
+    private double impostos;
 
-    public NotaFiscal(String cnpj, String razaoSocial, double valorBruto, Calendar dataDaEmissao, String observacoes, List<ItemDaNota> notaList) {
+    public NotaFiscal(String cnpj, String razaoSocial, double valorBruto, Calendar dataDaEmissao, String observacoes, List<ItemDaNota> notaList, double impostos) {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.valorBruto = valorBruto;
         this.dataDaEmissao = dataDaEmissao;
         this.observacoes = observacoes;
         this.notaList = notaList;
+        this.impostos = impostos;
     }
 
     public String getCnpj() {

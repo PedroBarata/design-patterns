@@ -1,7 +1,10 @@
 package br.com.demo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +17,7 @@ public class NotaFiscalBuilder {
     private double valorBruto;
     private Calendar dataDaEmissao;
     private String observacoes;
+    private double impostos;
     private List<ItemDaNota> notaList = new ArrayList<ItemDaNota>();
 
     /**
@@ -34,14 +38,19 @@ public class NotaFiscalBuilder {
         return this;
     }
 
-    public NotaFiscalBuilder dataAtual() {
-        this.dataDaEmissao = Calendar.getInstance();
+    public NotaFiscalBuilder naData(String dataString) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(formato.parse(dataString));
+        this.dataDaEmissao = calendar;
         return this;
     }
 
     public NotaFiscalBuilder comItem(ItemDaNota item) {
         this.notaList.add(item);
         this.valorBruto += item.getValor();
+        this.impostos += item.getValor() * 0.05;
         return this;
     }
 
@@ -52,7 +61,8 @@ public class NotaFiscalBuilder {
                 this.valorBruto,
                 this.dataDaEmissao,
                 this.observacoes,
-                this.notaList
+                this.notaList,
+                this.impostos
         );
     }
 

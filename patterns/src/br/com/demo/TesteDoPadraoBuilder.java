@@ -1,5 +1,8 @@
 package br.com.demo;
 
+import java.text.ParseException;
+import java.util.Date;
+
 public class TesteDoPadraoBuilder {
 
     /**
@@ -7,7 +10,7 @@ public class TesteDoPadraoBuilder {
      * usando uma classe complexa (NotaFiscal) e abstraindo as regras
      * de negócio e criação para o NotaFiscalBuilder
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         NotaFiscalBuilder builder = new NotaFiscalBuilder()
                 .comCnpj("1234567")
                 .comItem(new ItemDaNota("Item 1", 300.0))
@@ -15,9 +18,10 @@ public class TesteDoPadraoBuilder {
                 .comItem(new ItemDaNota("Item 3", 500.0))
                 .comNome("Teste")
                 .comObservacoes("observacoes")
-                .dataAtual();
+                .naData("10/10/2020");
 
         NotaFiscal nf = builder.buildNotaFiscal();
         System.out.println(nf.getValorBruto());
+        System.out.println(nf.getDataDaEmissao().getTime());
     }
 }
