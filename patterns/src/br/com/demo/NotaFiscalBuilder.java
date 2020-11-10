@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +18,15 @@ public class NotaFiscalBuilder {
     private String observacoes;
     private double impostos;
     private List<ItemDaNota> notaList = new ArrayList<ItemDaNota>();
+    private List<AcaoAposGerarNotaFiscal> todasAsAcoesAposGerarNotaFiscal;
+
+    public NotaFiscalBuilder(List<AcaoAposGerarNotaFiscal> acoes) {
+        this.todasAsAcoesAposGerarNotaFiscal = acoes;
+    }
+
+   /* public void adicionaAcao(AcaoAposGerarNotaFiscal acao) {
+        this.todasAsAcoesAposGerarNotaFiscal.add(acao);
+    }*/
 
     /**
      * Usando method chain (retorna o próprio builder)
@@ -55,7 +63,7 @@ public class NotaFiscalBuilder {
     }
 
     public NotaFiscal buildNotaFiscal() {
-        return new NotaFiscal(
+        NotaFiscal nf = new NotaFiscal(
                 this.cnpj,
                 this.razaoSocial,
                 this.valorBruto,
@@ -64,6 +72,12 @@ public class NotaFiscalBuilder {
                 this.notaList,
                 this.impostos
         );
+
+        todasAsAcoesAposGerarNotaFiscal.forEach(acaoAposGerarNotaFiscal -> {
+            acaoAposGerarNotaFiscal.executa(nf);
+        });
+
+        return nf;
     }
 
 }
