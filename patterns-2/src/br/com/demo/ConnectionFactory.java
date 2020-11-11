@@ -13,10 +13,16 @@ public class ConnectionFactory {
 
     public Connection getConnection() {
         try {
-            Connection c = DriverManager.getConnection("jdbc://mysql/localhost...", "root", "1234");
-            return c;
-        } catch (SQLException throwables) {
-            throw new RuntimeException(throwables.getCause());
+            Connection conexao;
+            String tipoBanco = System.getenv("tipoBanco");
+            if ("mysql".equals(tipoBanco)) {
+                conexao = DriverManager.getConnection("jdbc://mysql/localhost...", "root", "1234");
+            } else {
+                conexao = DriverManager.getConnection("jdbc://postgres/localhost...", "root", "1234");
+            }
+            return conexao;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
