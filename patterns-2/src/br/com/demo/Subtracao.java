@@ -17,4 +17,21 @@ public class Subtracao implements Expressao {
 
         return resultadoExpressaoDaEsquerda - resultadoExpressaoDaDireita;
     }
+
+    public Expressao getExpressaoEsquerda() {
+        return expressaoEsquerda;
+    }
+
+    public Expressao getExpressaoDireita() {
+        return expressaoDireita;
+    }
+
+    /**
+     * O "aceita" recebe um visitor e chama o próprio
+     * método novamente (recursivo), passando o próprio
+     * objeto (Subtracao, ou seja, this)
+     */
+    public void aceita(Visitor visitor) {
+        visitor.imprimeSubtracao(this);
+    }
 }

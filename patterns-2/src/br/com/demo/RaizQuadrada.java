@@ -13,4 +13,8 @@ public class RaizQuadrada implements Expressao {
         int resultadoExpressao = expressao.avalia();
         return (int) Math.sqrt(resultadoExpressao);
     }
+
+    @Override
+    public void aceita(Visitor visitor) {
+    }
 }

@@ -16,4 +16,8 @@ public class Divisao implements Expressao {
         int resultadoExpressaoDaDireita = expressaoDireita.avalia();
         return resultadoExpressaoDaEsquerda / resultadoExpressaoDaDireita;
     }
+
+    @Override
+    public void aceita(Visitor visitor) {
+    }
 }

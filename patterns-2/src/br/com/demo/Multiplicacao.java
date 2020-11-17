@@ -16,4 +16,8 @@ public class Multiplicacao implements Expressao {
         int resultadoExpressaoDaDireita = expressaoDireita.avalia();
         return resultadoExpressaoDaEsquerda * resultadoExpressaoDaDireita;
     }
+
+    @Override
+    public void aceita(Visitor visitor) {
+    }
 }

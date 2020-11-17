@@ -12,4 +12,12 @@ public class Numero implements Expressao {
     public int avalia() {
         return this.numero;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void aceita(Visitor visitor) {
+        visitor.imprimeNumero(this);
+    }
 }
