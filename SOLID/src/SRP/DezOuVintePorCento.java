@@ -1,3 +1,5 @@
+package SRP;
+
 public class DezOuVintePorCento implements RegraDeSalario {
     @Override
     public double calcula(Funcionario funcionario) {

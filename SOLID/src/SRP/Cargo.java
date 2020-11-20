@@ -1,3 +1,5 @@
+package SRP;
+
 public enum Cargo {
     DESENVOLVEDOR(new DezOuVintePorCento()),
     DBA(new QuinzeOuVinteECincoPorCento()),

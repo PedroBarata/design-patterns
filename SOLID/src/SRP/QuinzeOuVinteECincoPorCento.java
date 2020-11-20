@@ -1,3 +1,5 @@
+package SRP;
+
 public class QuinzeOuVinteECincoPorCento implements RegraDeSalario {
 
     public double calcula(Funcionario funcionario) {

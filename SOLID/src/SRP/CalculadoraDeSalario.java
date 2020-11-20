@@ -1,3 +1,5 @@
+package SRP;
+
 public class CalculadoraDeSalario {
     public double calcula(Funcionario funcionario) {
         return funcionario.calculaSalario();
@@ -8,20 +10,20 @@ public class CalculadoraDeSalario {
 
 /*========================= COMO ERA ===================================*/
 /*
-public class CalculadoraDeSalario {
-    public double calcula(Funcionario funcionario) {
-        if(Cargo.DESENVOLVEDOR.equals(funcionario.getCargo())) {
+public class SRP.CalculadoraDeSalario {
+    public double calcula(SRP.Funcionario funcionario) {
+        if(SRP.Cargo.DESENVOLVEDOR.equals(funcionario.getCargo())) {
             return dezOuVintePorcento(funcionario);
         }
 
-        if(Cargo.DBA.equals(funcionario.getCargo()) || Cargo.TESTER.equals(funcionario.getCargo())) {
+        if(SRP.Cargo.DBA.equals(funcionario.getCargo()) || SRP.Cargo.TESTER.equals(funcionario.getCargo())) {
             return quinzeOuVinteCincoPorcento(funcionario);
         }
 
         throw new RuntimeException("funcionario invalido");
     }
 
-    private double dezOuVintePorcento(Funcionario funcionario) {
+    private double dezOuVintePorcento(SRP.Funcionario funcionario) {
         if(funcionario.getSalarioBase() > 3000.0) {
             return funcionario.getSalarioBase() * 0.8;
         }
@@ -30,7 +32,7 @@ public class CalculadoraDeSalario {
         }
     }
 
-    public double quinzeOuVinteECincoPorCento(Funcionario funcionario) {
+    public double quinzeOuVinteECincoPorCento(SRP.Funcionario funcionario) {
         if(funcionario.getSalarioBase() > 2000.0) {
             return funcionario.getSalarioBase() * 0.75;
         }
