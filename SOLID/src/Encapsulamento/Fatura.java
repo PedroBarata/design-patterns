@@ -1,6 +1,7 @@
 package Encapsulamento;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Fatura {
@@ -26,16 +27,26 @@ public class Fatura {
     }
 
     public List<Pagamento> getPagamentos() {
-        return pagamentos;
+        return Collections.unmodifiableList(pagamentos);
     }
 
     public boolean isPago() {
         return pago;
     }
 
-    public void setPago(boolean pago) {
+    /*public void setPago(boolean pago) {
         this.pago = pago;
+    }*/
+
+    public void adicionaPagamento(Pagamento pagamento) {
+        this.pagamentos.add(pagamento);
+        verificaSeEstaPago();
     }
 
-
+    public void verificaSeEstaPago() {
+        double total = this.pagamentos.stream().mapToDouble(Pagamento::getValor).sum();
+        if (total >= valor) {
+            this.pago = true;
+        }
+    }
 }
