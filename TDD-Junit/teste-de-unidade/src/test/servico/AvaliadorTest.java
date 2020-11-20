@@ -1,4 +1,4 @@
-package br.com.caelum.leilao;
+package test.servico;
 
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
@@ -7,7 +7,7 @@ import br.com.caelum.leilao.servico.Avaliador;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Teste {
+class AvaliadorTest {
 
     @Test
     public void deveEntenderAOrdemDosLances() {
@@ -29,9 +29,9 @@ public class Teste {
         //parte 3: Validacao
         double menorLanceEsperado = 250.0;
         double maiorLanceEsperado = 450.0;
-
+        double mediaDosLances = 350.0;
         Assertions.assertEquals(menorLanceEsperado, leiloeiro.getMenorLance(), 0.0001);
         Assertions.assertEquals(maiorLanceEsperado, leiloeiro.getMaiorLance(), 0.0001);
-
+        Assertions.assertEquals(mediaDosLances, leiloeiro.getMediaDosLances(), 0.0001);
     }
 }
