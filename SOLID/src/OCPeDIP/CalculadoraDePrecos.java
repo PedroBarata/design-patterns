@@ -1,15 +1,20 @@
 package OCPeDIP;
 
 public class CalculadoraDePrecos {
+    private TabelaDePreco tabela;
+    private Frete entrega;
+
+    public CalculadoraDePrecos(TabelaDePreco tabela, Frete entrega) {
+        this.tabela = tabela;
+        this.entrega = entrega;
+    }
 
     public double calcula(Compra produto) {
-        TabelaDePrecoPadrao tabela = new TabelaDePrecoPadrao();
-        Frete correios = new Frete();
 
         double desconto = tabela.descontoPara(produto.getValor());
-        double frete = correios.para(produto.getCidade());
+        double frete = entrega.para(produto.getCidade());
 
-        return produto.getValor() * (1-desconto) + frete;
+        return produto.getValor() * (1 - desconto) + frete;
     }
 }
 
