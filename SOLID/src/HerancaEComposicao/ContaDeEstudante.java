@@ -1,11 +1,16 @@
 package HerancaEComposicao;
 
-public class ContaDeEstudante extends ContaComum {
+public class ContaDeEstudante {
 
     private int milhas;
+    private ManipuladorDeSaldo manipuladorDeSaldo;
+
+    public ContaDeEstudante() {
+        this.manipuladorDeSaldo = new ManipuladorDeSaldo();
+    }
 
     public void deposita(double valor) {
-        super.deposita(valor);
+        manipuladorDeSaldo.deposita(valor);
         this.milhas += (int) valor;
     }
 
@@ -13,7 +18,4 @@ public class ContaDeEstudante extends ContaComum {
         return milhas;
     }
 
-    public void rende() {
-        throw new RuntimeException("Não pode render");
-    }
 }

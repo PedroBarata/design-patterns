@@ -2,29 +2,25 @@ package HerancaEComposicao;
 
 public class ContaComum {
 
-    protected double saldo;
+    private ManipuladorDeSaldo manipuladorDeSaldo;
 
     public ContaComum() {
-        this.saldo = 0;
+        this.manipuladorDeSaldo = new ManipuladorDeSaldo();
     }
 
     public void deposita(double valor) {
-        this.saldo += valor;
+        manipuladorDeSaldo.deposita(valor);
     }
 
     public void saca(double valor) {
-        if (valor <= this.saldo) {
-            this.saldo -= valor;
-        } else {
-            throw new IllegalArgumentException();
-        }
+        manipuladorDeSaldo.saca(valor);
     }
 
     public void rende() {
-        this.saldo += this.saldo * 0.01;
+        manipuladorDeSaldo.rende(1.1);
     }
 
     public double getSaldo() {
-        return saldo;
+        return manipuladorDeSaldo.getSaldo();
     }
 }
