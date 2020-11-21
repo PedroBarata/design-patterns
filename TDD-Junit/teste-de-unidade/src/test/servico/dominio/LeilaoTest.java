@@ -15,7 +15,7 @@ class LeilaoTest {
     private Usuario jose;
 
     @BeforeEach
-    public void criaAvaliadores() {
+    public void criaUsuarios() {
         this.joao = new Usuario("joao");
         this.jose = new Usuario("jose");
     }

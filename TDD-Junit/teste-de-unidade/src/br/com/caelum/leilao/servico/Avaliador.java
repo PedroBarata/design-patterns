@@ -15,6 +15,9 @@ public class Avaliador {
     private List<Lance> maiores;
 
     public void avalia(Leilao leilao) {
+        if(leilao.getLances().isEmpty()) {
+            throw new RuntimeException("Não podemos avaliar leilões sem lances!");
+        }
         for(Lance lance : leilao.getLances()) {
             if(lance.getValor() > maiorDeTodos) maiorDeTodos = lance.getValor();
             if (lance.getValor() < menorDeTodos) menorDeTodos = lance.getValor();
@@ -31,7 +34,7 @@ public class Avaliador {
                 return 0;
             }
         });
-        maiores = maiores.subList(0, maiores.size() > 3 ? 3 : maiores.size());
+        maiores = maiores.subList(0, Math.min(maiores.size(), 3));
     }
 
     public List<Lance> getTresMaiores() {
