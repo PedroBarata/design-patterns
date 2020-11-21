@@ -62,4 +62,30 @@ class LeilaoTest {
 
     }
 
+    @Test
+    public void deveDobrarUmLanceDeUmUsuario() {
+        Usuario joao = new Usuario("joao");
+        Usuario jose = new Usuario("jose");
+
+        Leilao leilao = new Leilao("Playstation");
+
+        leilao.propoe(new Lance(joao, 250.0));
+        leilao.propoe(new Lance(jose, 5000.0));
+
+        leilao.dobraLance(joao);
+        assertEquals(3, leilao.getLances().size());
+        assertEquals(250.0 * 2, leilao.getLances().get(leilao.getLances().size() - 1).getValor());
+    }
+
+    @Test
+    public void naoDeveCriarUmLanceDeUmUsuario() {
+        Usuario joao = new Usuario("joao");
+
+        Leilao leilao = new Leilao("Playstation");
+
+
+        leilao.dobraLance(joao);
+        assertEquals(0, leilao.getLances().size());
+    }
+
 }

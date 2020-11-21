@@ -21,6 +21,21 @@ public class Leilao {
         }
     }
 
+    public void dobraLance(Usuario usuario) {
+        Lance ultimo = ultimoLanceDo(usuario);
+        if (ultimo != null) {
+            propoe(new Lance(usuario, ultimo.getValor() * 2));
+        }
+    }
+
+    private Lance ultimoLanceDo(Usuario usuario) {
+        Lance ultimo = null;
+        for (Lance l : getLances()) {
+            if (usuario.equals(l.getUsuario())) ultimo = l;
+        }
+        return ultimo;
+    }
+
     public boolean podeDarLance(Lance lance) {
         return !doisLancesSeguidosDoMesmoUsuario(lance) && totalDeLancesDo(lance.getUsuario()) < 5;
     }
