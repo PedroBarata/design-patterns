@@ -45,4 +45,23 @@ public class LeilaoDaoTest {
         //validacoes
         Assert.assertEquals(1L, total);
     }
+
+    @Test
+    public void deveRetornarNenhumLeilaoAtivo() {
+        //cenario
+        Usuario mauricio = new Usuario("mauricio", "mauricio@mauricio.com.br");
+
+        Leilao leilao = new Leilao("Geladeira", 1500.0, mauricio, true);
+        Leilao encerrado = new Leilao("Torradeira", 100.0, mauricio, true);
+        encerrado.encerra();
+        leilao.encerra();
+        //acoes
+        leilaoDao.salvar(leilao);
+        leilaoDao.salvar(encerrado);
+        usuarioDao.salvar(mauricio);
+        long total = leilaoDao.total();
+
+        //validacoes
+        Assert.assertEquals(0L, total);
+    }
 }
