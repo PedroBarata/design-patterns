@@ -136,4 +136,72 @@ public class LeilaoDaoTest {
         Assert.assertEquals("Geladeira", novosLeiloes.get(0).getNome());
 
     }
+
+    @Test
+    public void deveRetornarApenasLeiloesDoPeriodo() {
+        Calendar inicioDoPeriodo = Calendar.getInstance();
+        inicioDoPeriodo.add(Calendar.DAY_OF_MONTH, -10);
+
+        Usuario mauricio = new Usuario("mauricio", "mauricio@mauricio.com.br");
+        Leilao leilao = new LeilaoBuilder()
+                .comDono(mauricio)
+                .comNome("Geladeira")
+                .comValor(1500.0)
+                .diasAtras(2)
+                .constroi();
+
+        Leilao leilao2 = new LeilaoBuilder()
+                .comDono(mauricio)
+                .comNome("XBox")
+                .comValor(500.0)
+                .diasAtras(15)
+                .usado()
+                .constroi();
+
+        Calendar fimDoPeriodo = Calendar.getInstance();
+        //cenario
+
+        Calendar dentroDoPeriodo = Calendar.getInstance();
+        dentroDoPeriodo.add(Calendar.DAY_OF_MONTH, -2);
+        leilao.setDataAbertura(dentroDoPeriodo);
+
+        Calendar foraDoPeriodo = Calendar.getInstance();
+        foraDoPeriodo.add(Calendar.DAY_OF_MONTH, -20);
+        leilao2.setDataAbertura(foraDoPeriodo);
+        //acoes
+        leilaoDao.salvar(leilao);
+        leilaoDao.salvar(leilao2);
+
+        usuarioDao.salvar(mauricio);
+        List<Leilao> leiloes = leilaoDao.porPeriodo(inicioDoPeriodo, fimDoPeriodo);
+
+        //validacoes
+        Assert.assertEquals(1, leiloes.size());
+        Assert.assertEquals("Geladeira", leiloes.get(0).getNome());
+
+    }
+
+    @Test
+    public void deveRetornarApenasLeiloesAtivosNoPeriodo() {
+        Calendar inicioDoPeriodo = Calendar.getInstance();
+        inicioDoPeriodo.add(Calendar.DAY_OF_MONTH, -10);
+
+        Calendar fimDoPeriodo = Calendar.getInstance();
+        //cenario
+        Usuario mauricio = new Usuario("mauricio", "mauricio@mauricio.com.br");
+        Leilao leilao = new Leilao("Geladeira", 1500.0, mauricio, false);
+
+        Calendar dentroDoPeriodo = Calendar.getInstance();
+        dentroDoPeriodo.add(Calendar.DAY_OF_MONTH, -2);
+        leilao.setDataAbertura(dentroDoPeriodo);
+        leilao.encerra();
+        //acoes
+        leilaoDao.salvar(leilao);
+        usuarioDao.salvar(mauricio);
+        List<Leilao> leiloes = leilaoDao.porPeriodo(inicioDoPeriodo, fimDoPeriodo);
+
+        //validacoes
+        Assert.assertEquals(0, leiloes.size());
+
+    }
 }
