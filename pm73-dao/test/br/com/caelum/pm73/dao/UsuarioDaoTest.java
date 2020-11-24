@@ -20,6 +20,18 @@ public class UsuarioDaoTest {
 
         Assert.assertEquals("Joao", usuario.getNome());
         Assert.assertEquals("joao@dasilva.com.br", usuario.getEmail());
+        session.close();
+    }
 
+    @Test
+    public void deveRetornarNuloUsuarioPorNomeEEmailMockado() {
+        Session session = new CriadorDeSessao().getSession();
+
+        UsuarioDao usuarioDao = new UsuarioDao(session);
+
+        Usuario usuario = usuarioDao.porNomeEEmail("Teste", "teste@teste.com.br");
+
+        Assert.assertNull(usuario);
+        session.close();
     }
 }
